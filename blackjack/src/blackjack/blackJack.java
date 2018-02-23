@@ -48,7 +48,7 @@ public class blackJack
 				
 			
 			}
-		}while(choice != 4);
+		}while(true);
 	}
 	
 	public static DeckOfCards shuffleDeck(DeckOfCards deck)
@@ -73,25 +73,38 @@ public class blackJack
 		
 		
 		
-		while(playing)
+		while(playerFunds[0] > 0 & playing)
 		{
 			deck.buildDeck();
 			deck.shuffleDeck();
 			System.out.println("Deck has been shuffled");
-			while (DeckOfCards.returnPosition() < 32)
+			while (DeckOfCards.returnPosition() < 32 & playing)
 			{
+				
+				if( playerFunds[0] <= 0)
+				{
+					break;
+				}
 				Hand user = new Hand();
 				dealerHand dealer = new dealerHand();
 				user.buildHand();
 				dealer.buildHand();
 				
-				System.out.println("You have $" + playerFunds[0] + ". How much would you like to bet? ");
+				System.out.println("You have $" + playerFunds[0] + ". How much would you like to bet? Enter 0 to quit: ");
 				toBet = sc.nextInt();
 				
-				while (toBet <= 0)
+				while (toBet < 0)
 				{
-					System.out.print("Must enter a value bigger than 0: ");
+					
+					System.out.print("Must enter a value bigger than 0 to bet. Or 0 to quit: ");
 					toBet = sc.nextInt();
+				}
+				
+				if(toBet == 0)
+				{
+					
+					playing = false;
+					break;
 				}
 				
 				dealer.drawTwoCards(deck.returnDeck());
@@ -107,6 +120,7 @@ public class blackJack
 				{
 					boolean hit = true;
 					String check;
+					
 					
 					while(hit && user.returnCardValues() < 21)
 					{
@@ -143,6 +157,15 @@ public class blackJack
 			
 			
 			
+		}
+		
+		if(playerFunds[0] <= 0)
+		{
+			System.out.println("You've run out of money, thanks for playing!");
+		}
+		else
+		{
+			System.out.println("Thanks for playing!");
 		}
 	}
 	
