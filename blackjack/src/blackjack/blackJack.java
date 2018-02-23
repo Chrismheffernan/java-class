@@ -29,6 +29,7 @@ public class blackJack
 			System.out.println("2 - Deal 4 cards and show the number of remainer cards");
 			System.out.println("3 - Shuffle the cards and show the cards");
 			System.out.println("4 - Play the Blackjack game");
+			System.out.println("This is a test");
 			choice = sc.nextInt();
 			
 			switch(choice)
