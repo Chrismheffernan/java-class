@@ -1,11 +1,9 @@
-package labParticipation2;
+package labParticipation3;
 
 import java.util.Scanner;
 
-import labParticipation3.Dice;
 
-
-public class labParticipation {
+public class DiceWarGame {
 	
 	public static int wins = 0;
 	public static int games = 0;
@@ -20,6 +18,9 @@ public class labParticipation {
 		
 	}
 	
+	/**
+	 * Uses a do/while loop with a switch statement to present user a menu
+	 */
 	public static void menu ()
 	{
 		int choice;
@@ -49,21 +50,27 @@ public class labParticipation {
 		System.out.println("Thanks for playing!");
 	}
 	
+	
+	/**
+	 * Plays the dice game
+	 * Records wins and loses as they happen
+	 */
 	public static void diceGame()
 	{
 		String choice;
-		Dice opponent = new Dice();
-		Dice userOne = new Dice();
+		Player user = new Player("User");
+		Player computer = new Player("Computer");
+		
 		
 		do
 		{
-			userOne.rollDice();
-			opponent.rollDice();
+			user.rollPlayerDice();
+			computer.rollPlayerDice();
 			
-			System.out.println("You rolled: \t\t " + userOne.returnTotal() + " = " + userOne.returnValue1() + " + " + userOne.returnValue2());
-			System.out.println("Your opponent rolled: \t " + opponent.returnTotal() + " = " + opponent.returnValue1() + " + " + opponent.returnValue2());
+			user.printDice();
+			computer.printDice();
 			
-			if ( userOne.returnTotal() > opponent.returnTotal())
+			if ( user.returnPlayerTotal() > computer.returnPlayerTotal())
 			{
 				wins++;
 				games++;
@@ -72,7 +79,7 @@ public class labParticipation {
 				
 			}
 			
-			else if( userOne.returnTotal() < opponent.returnTotal())
+			else if( user.returnPlayerTotal() < computer.returnPlayerTotal())
 			{
 				games++;
 				System.out.println("I'm sorry, you've lost! Would you like to play again? ");
@@ -87,6 +94,10 @@ public class labParticipation {
 		} while(!choice.equals("N") & !choice.equals("n"));
 	}
 	
+	/**
+	 * Uses data gained from diceGame
+	 * to display how many games the user has won
+	 */
 	public static void stats()
 	{
 		System.out.println("You've won " + wins + " out of " + games + " games.");
