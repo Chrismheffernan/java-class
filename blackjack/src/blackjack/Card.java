@@ -2,36 +2,48 @@ package blackjack;
 
 import blackjack.Card.Suit;
 
+/**
+ * Class Card
+ * A class of Card that holds a set of values
+ * @author chris
+ *
+ */
 public class Card {
 	
+	/**
+	 * Creates a variable type Suit with 4 variables
+	 * Diamonds, Spades, Hearts, Clubs
+	 * @author chris
+	 *
+	 */
 	public enum Suit
 	{
 		DIAMONDS
 		{
 		      public String toString() 
 		      {
-		          return "diamonds";
+		          return "Diamonds";
 		      }
 		},
 		SPADES
 		{
 		      public String toString() 
 		      {
-		          return "spades";
+		          return "Spades";
 		      }
 		},
 		HEARTS
 		{
 		      public String toString() 
 		      {
-		          return "hearts";
+		          return "Hearts";
 		      }
 		},
 		CLUBS
 		{
 		      public String toString() 
 		      {
-		          return "clubs";
+		          return "Clubs";
 		      }
 		};
 	}
@@ -42,6 +54,12 @@ public class Card {
 	
 	public FaceType faceType;
 	
+	/**
+	 * Creates a variable FaceType with 5 variables
+	 * None, Jack, Queen, King, Ace
+	 * @author chris
+	 *
+	 */
 	enum FaceType
 	{
 		NONE,
@@ -49,28 +67,28 @@ public class Card {
 		{
 		      public String toString() 
 		      {
-		          return "jack";
+		          return "Jack";
 		      }
 		},
 		QUEEN
 		{
 		      public String toString() 
 		      {
-		          return "queen";
+		          return "Queen";
 		      }
 		},
 		KING
 		{
 		      public String toString() 
 		      {
-		          return "king";
+		          return "King";
 		      }
 		},
 		ACE
 		{
 		      public String toString() 
 		      {
-		          return "ace";
+		          return "Ace";
 		      }
 		};
 	}

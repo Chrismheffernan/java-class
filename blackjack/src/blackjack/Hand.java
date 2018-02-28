@@ -1,16 +1,23 @@
 package blackjack;
 
-
+/**
+ * Class Hand
+ * A class that can be used to create a set of players hands
+ * @author chris
+ *
+ */
 public class Hand {
 
 	private boolean hasWon = false;
-	
-	private String name;
 	
 	private int handPosition = 0;
 	
 	protected Card[] cards = new Card[11];
 	
+	/**
+	 * Method buildHand
+	 * Assigns the maximum number of cards in a hand a place in memory
+	 */
 	public void buildHand()
 	{
 		for( int i = 0; i<11; i++)
@@ -19,6 +26,14 @@ public class Hand {
 		}
 	}
 	
+	/**
+	 * Method drawTwoCards
+	 * Uses the parameter of a array of Cards to assign two consecutive
+	 * cards to the players hand.
+	 * Adds a value to hand position to keep track of how many cards are in
+	 * players hand.
+	 * @param deck
+	 */
 	public void drawTwoCards(Card[] deck)
 	{
 		for(int x = 0; x<2; x++)
@@ -28,6 +43,11 @@ public class Hand {
 		}
 	}
 	
+	/**
+	 * Method printHand
+	 * Uses the variable handPosition to print out the values of
+	 * each card in the players hand.
+	 */
 	public void printHand()
 	{
 		for ( int x = 0; x<handPosition; x++ )
@@ -42,14 +62,27 @@ public class Hand {
 				System.out.println("Card number " + (x+1) + " is a " + cards[x].faceType + " of " + cards[x].suit );
 			}
 		}
+		System.out.println("\n");
 	}
 	
+	/**
+	 * Method drawCard
+	 * Assigns the value of the current position of the array of Card
+	 * passed through to it.
+	 * @param deck
+	 */
 	public void drawCard(Card[] deck)
 	{
 			cards[handPosition] = deck[DeckOfCards.drawCard()];
 			handPosition++;
 	}
 	
+	/**
+	 * Method returnCardValues
+	 * Calculates the value of the players hand
+	 * takes into account the changing value of an Ace card
+	 * @return
+	 */
 	public int returnCardValues()
 	{
 		int aceCounter = 0;
@@ -72,12 +105,6 @@ public class Hand {
 		}
 		
 		return total;
-	}
-	
-	public Boolean winner()
-	{
-		hasWon = true;
-		return hasWon;
 	}
 	
 }

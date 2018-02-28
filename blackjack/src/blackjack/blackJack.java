@@ -8,7 +8,11 @@ public class blackJack
 	static Scanner sc = new Scanner(System.in);
 	
 	
-	
+	/**
+	 * Method Main
+	 * Calls the menu
+	 * @param args
+	 */
 	public static void main(String[] args) 
 	{
 		
@@ -18,6 +22,11 @@ public class blackJack
 		
 	}
 	
+	/**
+	 * Method menu
+	 * Creates a DeckOfCards
+	 * Uses a switch statement to display an interactive menu
+	 */
 	public static void menu()
 	{
 		int choice;
@@ -29,15 +38,20 @@ public class blackJack
 			System.out.println("2 - Deal 4 cards and show the number of remainer cards");
 			System.out.println("3 - Shuffle the cards and show the cards");
 			System.out.println("4 - Play the Blackjack game");
-			System.out.println("This is a test");
 			choice = sc.nextInt();
 			
 			switch(choice)
 			{
 				case 1: deck.buildDeck();
+				System.out.println("New Deck has been created.\n");
 					break;
 				
-				case 2: deck.drawFourCards();
+				case 2: if (DeckOfCards.returnPosition()==52)
+				{
+					System.out.println("No more cards left, creating a new deck");
+					deck.buildDeck();
+				}
+					deck.drawFourCards();
 					break;
 				
 				case 3: shuffleDeck(deck);
@@ -52,16 +66,32 @@ public class blackJack
 		}while(true);
 	}
 	
+	/**
+	 * Function shuffleDeck
+	 * Passes through the deck created in menu, uses this function to shuffle remaining cards
+	 * and display them on screen
+	 * @param deck
+	 * @return
+	 */
 	public static DeckOfCards shuffleDeck(DeckOfCards deck)
 	{
-		deck.buildDeck();
+		if(DeckOfCards.returnPosition() == 52)
+		{
+			System.out.println("No cards left in deck, creating a new deck.");
+			deck.buildDeck();
+		}
 		deck.shuffleDeck();
 		deck.printDeck();
 		return deck;
 	}
 
 
-
+	/**
+	 * Function playBlackJack
+	 * Sets the players funds to 100 and goes through the motions of a BlackJack game
+	 * Ends at users request or when the player runs out of money
+	 * @param deck
+	 */
 	public static void playBlackJack(DeckOfCards deck)
 	{
 		boolean playing = true;
@@ -94,12 +124,21 @@ public class blackJack
 				System.out.println("You have $" + playerFunds[0] + ". How much would you like to bet? Enter 0 to quit: ");
 				toBet = sc.nextInt();
 				
-				while (toBet < 0)
+				while (toBet < 0 || toBet > playerFunds[0])
 				{
+					if(toBet < 0)
+					{
+						System.out.print("Must enter a value bigger than 0 to bet. Or 0 to quit: ");
+						toBet = sc.nextInt();
+					}
 					
-					System.out.print("Must enter a value bigger than 0 to bet. Or 0 to quit: ");
-					toBet = sc.nextInt();
+					if(toBet > playerFunds[0])
+					{
+						System.out.print("You don't have enough funds, please enter an appropriate number. Or 0 to quit: ");
+						toBet = sc.nextInt();
+					}
 				}
+				
 				
 				if(toBet == 0)
 				{
@@ -162,15 +201,23 @@ public class blackJack
 		
 		if(playerFunds[0] <= 0)
 		{
-			System.out.println("You've run out of money, thanks for playing!");
+			System.out.println("You've run out of money, thanks for playing!\n");
 		}
 		else
 		{
-			System.out.println("Thanks for playing!");
+			System.out.println("Thanks for playing!\n");
 		}
 	}
 	
-	
+	/**
+	 * Function winner
+	 * This function is used to determine the winner of the round of Black Jack
+	 * Returns the value of the bet funds depending upon if the user won or lost
+	 * @param user
+	 * @param dealer
+	 * @param bet
+	 * @return end value of bet
+	 */
 	public static int winner(Hand user, Hand dealer, int bet)
 	{
 		if (user.returnCardValues() > 21)
@@ -190,8 +237,8 @@ public class blackJack
 		}
 		else if (user.returnCardValues() == dealer.returnCardValues())
 		{
-			System.out.println("Tie!");
-			return 0;
+			System.out.println("Tie! You still lose money though");
+			return bet*-1;
 		}
 		else
 		{
@@ -204,5 +251,3 @@ public class blackJack
 	
 
 }
-
-
