@@ -2,7 +2,12 @@ package labParticipation3;
 
 import java.util.Scanner;
 
-
+/**
+ * Class DiceWarGame
+ * Performs the functions of the dice game, as well as recording and displaying statistics
+ * @author Chris
+ *
+ */
 public class DiceWarGame {
 	
 	public static int wins = 0;
@@ -74,7 +79,7 @@ public class DiceWarGame {
 			{
 				wins++;
 				games++;
-				System.out.println("Congratulations, you've won! Would you like to play again? ");
+				System.out.println("Congratulations, you've won! Would you like to play again? N/n to quit: ");
 				choice = sc.next();
 				
 			}
@@ -82,13 +87,13 @@ public class DiceWarGame {
 			else if( user.returnPlayerTotal() < computer.returnPlayerTotal())
 			{
 				games++;
-				System.out.println("I'm sorry, you've lost! Would you like to play again? ");
+				System.out.println("I'm sorry, you've lost! Would you like to play again? N/n to quit: ");
 				choice = sc.next();
 			}
 			else
 			{
 				games++;
-				System.out.println("Its a tie! Would you like to play again? ");
+				System.out.println("Its a tie! Would you like to play again? N/n to quit: ");
 				choice = sc.next();
 			}
 		} while(!choice.equals("N") & !choice.equals("n"));
@@ -100,7 +105,7 @@ public class DiceWarGame {
 	 */
 	public static void stats()
 	{
-		System.out.println("You've won " + wins + " out of " + games + " games.");
+		System.out.println("You've won " + wins + " out of " + games + " games.\n");
 	}
 	
 	

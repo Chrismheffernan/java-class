@@ -42,11 +42,15 @@ public class HappyNumbers {
 			
 			if (happyCheck(number))
 			{
-				System.out.println("This number is happy!");
+				printArray(arrayOfNumbers, number);
+				blankArray(arrayOfNumbers);
+				System.out.println("This number is happy!\n");
 			}
 			else
 			{
-				System.out.println("This number is not happy.");
+				printArray(arrayOfNumbers, number);
+				blankArray(arrayOfNumbers);
+				System.out.println("This number is not happy.\n");
 			}
 			
 			
@@ -54,8 +58,17 @@ public class HappyNumbers {
 			
 		}
 		
+		System.out.println("Thanks for using the program!");
+		
 	}
 	
+	/**
+	 * Function happyCheck
+	 * Breaks up a number into separate digits, squares them then adds them back together
+	 * Breaks only when tested against an outside loop, or when one of the numbers is equal to 1
+	 * @param number - number meant to check against
+	 * @return
+	 */
 	public static boolean happyCheck(int number)
 	{
 		int placeHolder;
@@ -75,10 +88,9 @@ public class HappyNumbers {
 			total += placeHolder*placeHolder;
 		}
 		
-		System.out.println(total);
-		
 		if(arrayChecker(total))
 		{
+			
 			return false;
 		}
 		
@@ -90,18 +102,28 @@ public class HappyNumbers {
 		
 		
 		
-		blankArray(arrayOfNumbers);
+		
 		return false;
 		
 		
 	}
 	
+	/**
+	 * Function arrayChecker
+	 * Checks against an array created during the happyChecker function
+	 * As happyChecker is recursive, we had to create an outside array that happyChecker
+	 * can use to ensure it doesn't get stuck in a loop
+	 * @param number - number to check against the array
+	 * @return
+	 */
 	public static boolean arrayChecker(int number)
 	{
 		for(int x = 0; x < arrayPosition + 1; x++)
 		{
 			if( arrayOfNumbers[x] == number)
 			{
+				arrayOfNumbers[arrayPosition] = number;
+				arrayPosition++;
 				return true;
 			}
 		}
@@ -110,12 +132,35 @@ public class HappyNumbers {
 		return false;
 	}
 	
+	/**
+	 * Function blankArray
+	 * This function is used to wipe the array, it is used each time the recurvise function is completed
+	 * @param array
+	 */
 	public static void blankArray(int[] array)
 	{
 		for (int x = 0; x<50; x++)
 		{
 			array[x] = 0;
 		}
+		arrayPosition = 0;
+	}
+	
+	/**
+	 * Function printArray
+	 * Prints all the values of the array before informing user if it is happy or not
+	 * @param array
+	 * @param total
+	 */
+	public static void printArray(int[] array, int total) 
+	{
+		System.out.print(total + ": ");
+		for (int x = 0; x<arrayPosition-1; x++)
+		{
+			System.out.print(array[x] + ", ");
+		}
+		
+		System.out.print(array[arrayPosition-1] + " - ");
 	}
 
 	

@@ -5,9 +5,12 @@ import java.util.Scanner;
 public class labParticipation {
 
 	
-	
+	/**
+	 * Function main
+	 * Performs the dice game
+	 * @param arguments
+	 */
 	public static void main(String[] arguments) {
-		System.out.println("Hello World!");
 
 		Scanner sc=new Scanner(System.in);
 		
@@ -16,7 +19,7 @@ public class labParticipation {
 		boolean flag = true;
 		while(flag)
 		{
-			System.out.println("Would you like to play a game? Pres any key to continue: ");
+			System.out.println("Would you like to play a game? Pres any key to continue, N/n to quit: ");
 			String choice = sc.next();
 		
 					
@@ -30,19 +33,19 @@ public class labParticipation {
 				
 				if ( userOne.returnTotal() > opponent.returnTotal())
 				{
-					System.out.println("Congratulations, you've won! Would you like to play again? ");
+					System.out.println("Congratulations, you've won! Would you like to play again? N/n to quit: ");
 					choice = sc.next();
 					
 				}
 				
 				else if( userOne.returnTotal() < opponent.returnTotal())
 				{
-					System.out.println("I'm sorry, you've lost! Would you like to play again? ");
+					System.out.println("I'm sorry, you've lost! Would you like to play again? N/n to quit: ");
 					choice = sc.next();
 				}
 				else
 				{
-					System.out.println("Its a tie! Would you like to play again? ");
+					System.out.println("Its a tie! Would you like to play again? N/n to quit: ");
 					choice = sc.next();
 				}
 			}

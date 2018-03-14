@@ -33,7 +33,11 @@ public class Player {
 		dice[1].rollDice();
 		
 	}
-	
+	/**
+	 * Method returnPlayerTotal
+	 * Returns the value of both the players dice
+	 * @return
+	 */
 	public int returnPlayerTotal()
 	{
 		int total = 0;
@@ -43,6 +47,10 @@ public class Player {
 		return total;
 	}
 	
+	/**
+	 * Method printDice
+	 * Prints out the total value of the dice, as well as each individual value
+	 */
 	public void printDice()
 	{
 		System.out.println(player + " has a total of " + returnPlayerTotal() + " with a " + dice[0].returnValue() + " and " + dice[1].returnValue());
