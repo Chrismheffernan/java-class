@@ -35,16 +35,17 @@ public class HappyNumbers {
 				System.out.println("Please enter a number greater than 0 or 0 to quit: ");
 				number = sc.nextInt();
 			}
-			if( number == 0 )
-			{
-				inUse = false;
-			}
+			
 			
 			if (happyCheck(number))
 			{
 				printArray(arrayOfNumbers, number);
 				blankArray(arrayOfNumbers);
 				System.out.println("This number is happy!\n");
+			}
+			else if( number == 0 )
+			{
+				inUse = false;
 			}
 			else
 			{
