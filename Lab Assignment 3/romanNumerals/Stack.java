@@ -13,7 +13,7 @@ public class Stack {
 	
 	public void push(String pushValue)
 	{
-		mainArray[stackPosition] = pushValue;
+		mainArray[stackPosition+1] = pushValue;
 		stackPosition++;
 	}
 	
