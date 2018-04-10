@@ -59,6 +59,7 @@ public class RomanNumerals {
 			
 		}
 		System.out.println("Thanks for using!");
+		sc.close();
 
 	}
 	

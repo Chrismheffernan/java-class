@@ -219,6 +219,11 @@ public class Numeral {
 			{
 				numeralValue += 5;
 				vCount++;
+				
+				if( numeralValue > 8)
+				{
+					invalid = true;
+				}
 			}
 			
 			if( temp.equals("X"))
@@ -246,6 +251,11 @@ public class Numeral {
 			{
 				numeralValue += 50;
 				lCount++;
+				
+				if( numeralValue > 80)
+				{
+					invalid = true;
+				}
 			}
 			
 			if( temp.equals("C") )
@@ -273,6 +283,11 @@ public class Numeral {
 			{
 				numeralValue += 500;
 				dCount++;
+				
+				if( numeralValue > 800)
+				{
+					invalid = true;
+				}
 			}
 			
 			if( temp.equals("M"))
