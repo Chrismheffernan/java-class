@@ -17,7 +17,7 @@ public class LabAssignment4 {
 	{
 		LinkList newList = new LinkList();
 		int choice;
-		boolean listCreated = false;
+		
 		
 		do {
 		
@@ -35,7 +35,6 @@ public class LabAssignment4 {
 			switch(choice)
 			{
 				case 1: newList = new LinkList();
-					listCreated = true;
 					break;
 				
 				case 2: 
@@ -55,7 +54,7 @@ public class LabAssignment4 {
 					System.out.println ("The list currently holds: " + newList.displayList() );
 					break;
 				case 7:
-					break;
+					romanMath(newList);
 				case 8:
 					break;
 			
@@ -112,6 +111,99 @@ public class LabAssignment4 {
 			position = sc.nextInt();
 		}
 		newList.removeLink(position);
+		
+	}
+	
+	static public void romanMath(LinkList newList)
+	{
+		String numeralEquation = newList.displayList();
+		String[] subtractParts = numeralEquation.split("-");
+		String[] additionParts = numeralEquation.split("\\+");
+		String[] multiplyParts = numeralEquation.split("\\*");
+		
+		if(subtractParts.length > 1)
+		{
+			RomanNumeral num1 = new RomanNumeral(subtractParts[0], 1);
+			RomanNumeral num2 = new RomanNumeral(subtractParts[1], 2);
+			
+			RomanNumeral num3 = new RomanNumeral( num1.printArabic() - num2.printArabic(), 3 );
+			if(num1.isValid() || num2.isValid())
+			{
+				if(num1.isValid() && num2.isValid())
+				{
+					System.out.println("Both of your roman numeral were not valid entries, please try again");
+				}
+				else if(num1.isValid() && !num2.isValid())
+				{
+					System.out.println("Your first numeral value is invalid, please try again");
+				}
+				else
+				{
+					System.out.println("Your second numeral value is invalid, please try again");
+				}
+			}
+			else
+			{
+				System.out.println(num1.printRoman() + " - " + num2.printRoman() + " = " + num3.printRoman());
+			}
+		}
+		else if (additionParts.length > 1)
+		{
+			RomanNumeral num1 = new RomanNumeral(additionParts[0], 1);
+			RomanNumeral num2 = new RomanNumeral(additionParts[1], 2);
+			
+			RomanNumeral num3 = new RomanNumeral( num1.printArabic() + num2.printArabic(), 3 );
+			
+			if(num1.isValid() || num2.isValid())
+			{
+				if(num1.isValid() && num2.isValid())
+				{
+					System.out.println("Both of your roman numeral were not valid entries, please try again");
+				}
+				else if(num1.isValid() && !num2.isValid())
+				{
+					System.out.println("Your first numeral value is invalid, please try again");
+				}
+				else
+				{
+					System.out.println("Your second numeral value is invalid, please try again");
+				}
+			}
+			else
+			{
+				System.out.println(num1.printRoman() + " + " + num2.printRoman() + " = " + num3.printRoman());
+			}
+		}
+		else if (multiplyParts.length > 1)
+		{
+			RomanNumeral num1 = new RomanNumeral(multiplyParts[0], 1);
+			RomanNumeral num2 = new RomanNumeral(multiplyParts[1], 2);
+			
+			RomanNumeral num3 = new RomanNumeral( num1.printArabic() * num2.printArabic(), 3 );
+			if(num1.isValid() || num2.isValid())
+			{
+				if(num1.isValid() && num2.isValid())
+				{
+					System.out.println("Both of your roman numeral were not valid entries, please try again");
+				}
+				else if(num1.isValid() && !num2.isValid())
+				{
+					System.out.println("Your first numeral value is invalid, please try again");
+				}
+				else
+				{
+					System.out.println("Your second numeral value is invalid, please try again");
+				}
+			}
+			else
+			{
+				System.out.println(num1.printRoman() + " * " + num2.printRoman() + " = " + num3.printRoman());
+			}
+		}
+		else
+		{
+			System.out.println("Entered equation format incorrectly");
+		}
 		
 	}
 
