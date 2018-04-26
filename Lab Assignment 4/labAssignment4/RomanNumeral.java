@@ -218,7 +218,7 @@ public class RomanNumeral {
 				
 				if( numeralValue > 10)
 				{
-					invalid = true;
+					//invalid = true;
 				}
 				
 				iCount++;
@@ -250,7 +250,7 @@ public class RomanNumeral {
 				
 				if( numeralValue > 109)
 				{
-					invalid = true;
+					//invalid = true;
 				}
 				
 				xCount++;
@@ -263,7 +263,7 @@ public class RomanNumeral {
 				
 				if( numeralValue > 80)
 				{
-					invalid = true;
+					//invalid = true;
 				}
 			}
 			
@@ -282,7 +282,7 @@ public class RomanNumeral {
 				
 				if( numeralValue > 1099)
 				{
-					invalid = true;
+					//invalid = true;
 				}
 				
 				cCount++;
@@ -295,7 +295,7 @@ public class RomanNumeral {
 				
 				if( numeralValue > 800)
 				{
-					invalid = true;
+					//invalid = true;
 				}
 			}
 			

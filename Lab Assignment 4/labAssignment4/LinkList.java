@@ -111,5 +111,10 @@ public class LinkList {
 		
 	}
 	
+	public Node returnFirst()
+	{
+		return first;
+	}
+	
 
 }

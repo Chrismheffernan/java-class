@@ -116,15 +116,68 @@ public class LabAssignment4 {
 	
 	static public void romanMath(LinkList newList)
 	{
-		String numeralEquation = newList.displayList();
-		String[] subtractParts = numeralEquation.split("-");
-		String[] additionParts = numeralEquation.split("\\+");
-		String[] multiplyParts = numeralEquation.split("\\*");
+		boolean addFlag = false, subFlag = false, multiplyFlag = false;
 		
-		if(subtractParts.length > 1)
+		System.out.println("Please enter two Roman numerals separated by either a: +, -, *. ");
+		sc.nextLine();
+		String numeralEquation = sc.nextLine();
+		
+		LinkList numeralOne = new LinkList();
+		LinkList numeralTwo = new LinkList();
+		char[] numeralArray = numeralEquation.toCharArray();
+		while( addFlag == false && subFlag == false && multiplyFlag == false)
 		{
-			RomanNumeral num1 = new RomanNumeral(subtractParts[0], 1);
-			RomanNumeral num2 = new RomanNumeral(subtractParts[1], 2);
+			for( int x = 0; x < numeralArray.length; x++)
+			{
+				
+				
+				if( numeralArray[x] == '+')
+				{
+					addFlag = true;
+					x++;
+				}
+				if( numeralArray[x] == '-')
+				{
+					subFlag = true;
+					x++;
+				}
+				if( numeralArray[x] == '*')
+				{
+					multiplyFlag = true;
+					x++;
+				}
+				
+				if( addFlag == false && subFlag == false && multiplyFlag == false)
+				{
+					numeralOne.addLink(numeralArray[x], numeralOne.returnSize());
+				}
+				
+				if( addFlag == true || subFlag == true || multiplyFlag == true )
+				{
+					numeralTwo.addLink(numeralArray[x], numeralTwo.returnSize());
+
+				}
+			
+			
+			}
+			
+			
+			if(addFlag == false && subFlag == false && multiplyFlag == false)
+			{
+				
+				System.out.println("You've entered the problem incorrectly, please try again");
+				numeralEquation = sc.nextLine();
+				numeralArray = numeralEquation.toCharArray();
+			}
+		
+		}
+		
+		
+		if(subFlag == true)
+		{
+			
+			RomanNumeral num1 = new RomanNumeral(numeralOne.displayList(), 1);
+			RomanNumeral num2 = new RomanNumeral(numeralTwo.displayList(), 2);
 			
 			RomanNumeral num3 = new RomanNumeral( num1.printArabic() - num2.printArabic(), 3 );
 			if(num1.isValid() || num2.isValid())
@@ -147,10 +200,10 @@ public class LabAssignment4 {
 				System.out.println(num1.printRoman() + " - " + num2.printRoman() + " = " + num3.printRoman());
 			}
 		}
-		else if (additionParts.length > 1)
+		else if (addFlag == true)
 		{
-			RomanNumeral num1 = new RomanNumeral(additionParts[0], 1);
-			RomanNumeral num2 = new RomanNumeral(additionParts[1], 2);
+			RomanNumeral num1 = new RomanNumeral(numeralOne.displayList(), 1);
+			RomanNumeral num2 = new RomanNumeral(numeralTwo.displayList(), 2);
 			
 			RomanNumeral num3 = new RomanNumeral( num1.printArabic() + num2.printArabic(), 3 );
 			
@@ -174,10 +227,10 @@ public class LabAssignment4 {
 				System.out.println(num1.printRoman() + " + " + num2.printRoman() + " = " + num3.printRoman());
 			}
 		}
-		else if (multiplyParts.length > 1)
+		else if (multiplyFlag == true)
 		{
-			RomanNumeral num1 = new RomanNumeral(multiplyParts[0], 1);
-			RomanNumeral num2 = new RomanNumeral(multiplyParts[1], 2);
+			RomanNumeral num1 = new RomanNumeral(numeralOne.displayList(), 1);
+			RomanNumeral num2 = new RomanNumeral(numeralTwo.displayList(), 2);
 			
 			RomanNumeral num3 = new RomanNumeral( num1.printArabic() * num2.printArabic(), 3 );
 			if(num1.isValid() || num2.isValid())
