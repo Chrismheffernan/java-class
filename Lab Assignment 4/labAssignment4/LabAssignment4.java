@@ -2,6 +2,8 @@ package labAssignment4;
 
 import java.util.Scanner;
 
+import labParticipation8.LinkList;
+
 public class LabAssignment4 {
 
 	static Scanner sc = new Scanner(System.in);

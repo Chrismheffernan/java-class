@@ -14,7 +14,9 @@ public class DeckOfCards
 {
 	private boolean deckBuilt = false;
 	private static int deckPosition = 0;
-	private Card[] deck = new Card[52];
+	private LinkList deck = new LinkList();
+	private Node nodePosition = deck.returnFirst();
+	
 	
 	/**
 	 * method buildDeck
@@ -24,10 +26,7 @@ public class DeckOfCards
 	 */
 	public void buildDeck()
 	{
-		for( int i = 0; i<52; i++)
-		{
-			deck[i] = new Card();
-		}
+		Card tempCard = new Card();
 		int cardNumber;
 		cardNumber = 0;
 		for( Card.Suit suitLoop : Card.Suit.values() )
@@ -36,9 +35,10 @@ public class DeckOfCards
 			{
 				if ( y < 10)
 				{
-					deck[cardNumber].value = y;
-					deck[cardNumber].suit = suitLoop;
-					deck[cardNumber].faceType = Card.FaceType.NONE;
+					tempCard.value = y;
+					tempCard.suit = suitLoop;
+					tempCard.faceType = Card.FaceType.NONE;
+					deck.addLink(tempCard, 0);
 					cardNumber++;
 				}
 				
@@ -46,9 +46,10 @@ public class DeckOfCards
 				{
 					for ( Card.FaceType type : Card.FaceType.values() )
 					{
-						deck[cardNumber].value = 10;
-						deck[cardNumber].faceType = type;
-						deck[cardNumber].suit = suitLoop;
+						tempCard.value = 10;
+						tempCard.faceType = type;
+						tempCard.suit = suitLoop;
+						deck.addLink(tempCard, 0);
 						cardNumber++;
 						y++;
 					}
@@ -56,9 +57,10 @@ public class DeckOfCards
 				
 				if ( y == 14)
 				{
-					deck[cardNumber].value = 11;
-					deck[cardNumber].faceType = Card.FaceType.ACE;
-					deck[cardNumber].suit = suitLoop;
+					tempCard.value = 11;
+					tempCard.faceType = Card.FaceType.ACE;
+					tempCard.suit = suitLoop;
+					deck.addLink(tempCard, 0);
 					cardNumber++;
 				}
 			}
@@ -83,9 +85,10 @@ public class DeckOfCards
 			
 			Card tempCard = new Card();
 			
-			tempCard = deck[a];
-			deck[a]=deck[b];
-			deck[b]=tempCard;
+			tempCard = deck.displayNode(a);
+			deck.removeLink(a);
+			deck.addLink(tempCard, b);
+		
 		}
 		
 	}
@@ -97,17 +100,22 @@ public class DeckOfCards
 	 */
 	public void printDeck()
 	{
+		Node tempCard = deck.returnFirst();
+		
 		for ( int x = deckPosition; x<52; x++ )
 		{
-			if ( deck[x].faceType == Card.FaceType.NONE )
+			
+			if ( deck.displayNode(x).faceType == Card.FaceType.NONE )
 			{
-				System.out.println("Card number " + (x+1) + " is a " + deck[x].value + " of " + deck[x].suit );
+				System.out.println("Card number " + (x+1) + " is a " + deck.displayNode(x).value + " of " + deck.displayNode(x).suit );
 			}
 			
 			else
 			{
-				System.out.println("Card number " + (x+1) + " is a " + deck[x].faceType + " of " + deck[x].suit );
+				System.out.println("Card number " + (x+1) + " is a " + deck.displayNode(x).faceType + " of " + deck.displayNode(x).suit );
 			}
+			
+			tempCard = tempCard.nextLink;
 		}
 		System.out.println("\n");
 	}
@@ -138,17 +146,16 @@ public class DeckOfCards
 		}
 		for (int x = deckPosition; x <deckPosition+4; x++) 
 		{
-			if ( deck[x].faceType == Card.FaceType.NONE )
+			if ( deck.displayNode(x).faceType == Card.FaceType.NONE )
 			{
-				System.out.println("Card number " + (x+1) + " is a " + deck[x].value + " of " + deck[x].suit );
+				System.out.println("Card number " + (x+1) + " is a " + deck.displayNode(x).value + " of " + deck.displayNode(x).suit );
 			}
 			
 			else
 			{
-				System.out.println("Card number " + (x+1) + " is a " + deck[x].faceType + " of " + deck[x].suit );
+				System.out.println("Card number " + (x+1) + " is a " + deck.displayNode(x).faceType + " of " + deck.displayNode(x).suit );
 			}
 		}
-		
 		deckPosition = deckPosition + 4;
 		
 		System.out.println("There are " + (52-deckPosition) + " left in the deck.\n");
@@ -172,7 +179,7 @@ public class DeckOfCards
 	 * to other methods.
 	 * @return
 	 */
-	public Card[] returnDeck()
+	public LinkList returnDeck()
 	{
 		return deck;
 	}
