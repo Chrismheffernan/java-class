@@ -22,7 +22,7 @@ public class Main {
 		
 	
 		//Heaps the array into a max array
-		for( int x = 32/2-1; x >= 1; x--)
+		/**for( int x = 32/2-1; x >= 1; x--)
 		{
 			if(mainHeap.heapTheArray(x))
 			{
@@ -33,7 +33,10 @@ public class Main {
 					sc.nextLine();
 				}
 			}
-		}
+		}**/
+		
+		mainHeap = recurHeap(1, mainHeap);
+		
 		System.out.println("Array has been made into a max-heap!");
 		System.out.println("Press any key to continue...");
 		sc.nextLine();
@@ -80,6 +83,41 @@ public class Main {
 			
 	
 
+	}
+	
+	public static Heap recurHeap(int position, Heap mainHeap)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		if( position == 16)
+		{
+			return mainHeap;
+		}
+		if(mainHeap.topDownLeft(position))
+		{
+			System.out.println( mainHeap.printTree(5) );
+			System.out.println("Press any key to continue...1");
+			sc.nextLine();
+		}
+		if(mainHeap.topDownRight(position))
+		{
+			System.out.println( mainHeap.printTree(5) );
+			System.out.println("Press any key to continue...2");
+			sc.nextLine();
+		}
+		
+		mainHeap = recurHeap( position + 1, mainHeap);
+		
+		if(mainHeap.heapTheArray(position))
+		{
+			System.out.println( mainHeap.printTree(5) );
+			System.out.println("Press any key to continue...3");
+			sc.nextLine();
+		}
+		
+		return mainHeap;
+		
+		
 	}
 
 }

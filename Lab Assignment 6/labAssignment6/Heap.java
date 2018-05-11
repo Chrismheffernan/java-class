@@ -1,3 +1,4 @@
+
 package labAssignment6;
 
 import java.util.Arrays;
@@ -34,6 +35,39 @@ public class Heap {
 
 	}
 	
+	
+	public boolean topDownLeft( int index)
+	{
+		Data2 temp = theHeap[index];
+		if(theHeap[index * 2].getKey() > theHeap[index].getKey())
+		{
+			theHeap[index] = theHeap[index * 2];
+			theHeap[index * 2] = temp;
+			return true;
+		}
+		
+		return false;
+		
+	}
+	
+	/**
+	 * Method topDownRight
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public boolean topDownRight( int index)
+	{
+		Data2 temp = theHeap[index];
+		if(theHeap[index * 2+1].getKey() > theHeap[index].getKey())
+		{
+			theHeap[index] = theHeap[index * 2+1];
+			theHeap[index * 2+1] = temp;
+			return true;
+		}
+		
+		return false;
+	}
 	
 	/**
 	 * Method newArray
